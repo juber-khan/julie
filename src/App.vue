@@ -1,7 +1,5 @@
 <template>
   <v-app id="inspire">
-    <!-- <v-navigation-drawer v-model="left" fixed temporary>
-    </v-navigation-drawer> -->
      <appBar></appBar>
     <v-content>
       <v-container fluid fill-height>
@@ -46,6 +44,17 @@ export default {
 };
 </script>
 <style scoped>
+
+@media (min-width: 768px)
+{
+    .navbar-toggle {
+        display: none;
+    }
+}
+
+.v-text-field input {
+    font-size: 1.2em;
+}
 /* card */
 .v-input__slider {
   width: 100%;

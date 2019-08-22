@@ -1,12 +1,16 @@
 <template>
-  <v-app-bar app clipped-right color="blue-grey" dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Julie</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn v-for="item in menu" :key="item.icon" :to="item.link" text>{{ item.title }}</v-btn>
-      </v-toolbar-items>
-    </v-app-bar>
+    <div>
+        <v-navigation-drawer v-model="left" fixed temporary>
+            </v-navigation-drawer>
+        <v-app-bar app clipped-right color="blue-grey" dark>
+            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <v-toolbar-title>Julie</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn v-for="item in menu" :key="item.icon" :to="item.link" text>{{ item.title }}</v-btn>
+            </v-toolbar-items>
+            </v-app-bar>
+        </div>
 </template>
 
 <script>

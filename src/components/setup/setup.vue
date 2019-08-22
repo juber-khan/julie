@@ -2,8 +2,6 @@
   <v-container>
     <v-card
       class="mx-auto"
-      :flat="flat"
-      :loading="loading"
       :width="width"
       :height="height"
     >
@@ -69,8 +67,6 @@
     </v-card>
     <v-card
       class="mt-5 mx-auto"
-      :flat="flat"
-      :loading="loading"
       :width="width"
       :height="height"
     >
@@ -78,46 +74,44 @@
       <v-data-table :headers="headers" :items="desserts" sort-by="calories">
         <!-- <template v-slot:top> -->
           <template v-slot:item.month="{ item }">
-      <v-select :items="states" :menu-props="{ top: true, offsetY: true }" label="Label"></v-select>
-    </template>
-        <v-toolbar flat color="white">
+            <v-select :items="states" :menu-props="{ top: true, offsetY: true }" label="Label"></v-select>
+          </template>
+        <v-toolbar color="white">
           <v-divider class="mx-4" inset vertical></v-divider>
-          <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="500px">
-            <v-card>
-              <v-card-title>
-                <span class="headline">{{ formTitle }}</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+        <v-dialog v-model="dialog" max-width="300px">
+          <v-card>
+            <v-card-title>
+              <span class="headline">{{ formTitle }}</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
         </v-toolbar>
-        <!-- </template> -->
         <template v-slot:item.action="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">edit</v-icon>
         </template>
@@ -132,7 +126,7 @@
 <script>
 export default {
   data: () => ({
-    states:[],
+    states : ["Alabama", "Alaska", "American Samoa", "Arizona"],
     dialog: false,
     width: 1000,
     height:null,
@@ -200,11 +194,11 @@ export default {
           carbs: 37,
           protein: 4.3
         }
-      ],
-        states = ["Alabama", "Alaska", "American Samoa", "Arizona"];
+      ] 
     },
 
     editItem(item) {
+      debugger;
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;

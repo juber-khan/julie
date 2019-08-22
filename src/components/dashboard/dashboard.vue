@@ -11,18 +11,28 @@
       <div class="text-center">
         <v-progress-circular
           :rotate="360"
-          :size="100"
-          :width="15"
+          :size="70"
+          :width="5"
           :value="value"
           color="teal"
         >{{ value }}</v-progress-circular>
         <div>Days Left</div>
       </div>
-      <v-spacer></v-spacer>
-      <v-progress-linear v-model="skill" color="amber" height="25" width="80" reactive></v-progress-linear>
+    </v-card>
+  <v-card
+      class="mt-5 mx-auto"
+      :flat="flat"
+      :loading="loading"
+      :outlined="outlined"
+      :raised="raised"
+      :width="width"
+      :height="height">
       <div class="text-center">
-        Chips Sold :
-        <span>18 cr</span>
+        <v-progress-linear class="m-5" v-model="skill" color="amber" height="25" width="80" reactive></v-progress-linear>
+        <div class="text-center">
+          Chips Sold :
+          <span>18 cr</span>
+        </div>
       </div>
     </v-card>
     <v-card
@@ -41,11 +51,16 @@
     :sort-by="['calories', 'fat']"
     :sort-desc="[false, true]"
     multi-sort
-  ></v-data-table>
+  >
+  <template v-slot:item.month="{ item }">
+          <v-shrink>
+            <v-progress-linear class="m-5" v-model="skill" color="amber" height="25" width="80" reactive></v-progress-linear>
+          </v-shrink>
+          </template>
+  </v-data-table>
     </v-card>
   </v-container>
 </template>
-
 <script>
 export default {
 
@@ -97,7 +112,7 @@ export default {
           { text: 'Calories', value: 'calories' },
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
+          { text: "Month", value: "month" },
           { text: 'Iron (%)', value: 'iron' },
         ],
         desserts: [
