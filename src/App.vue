@@ -1,44 +1,57 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar app clipped-right color="blue-grey" dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Julie</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-         <v-btn
-          v-for="item in menu"
-          :key="item.icon"
-          :to="item.link"
-          flat
-        >{{ item.title }}</v-btn>
-      </v-toolbar-items>
-    </v-app-bar>
-    <v-navigation-drawer v-model="left" fixed temporary></v-navigation-drawer>
+    <!-- <v-navigation-drawer v-model="left" fixed temporary>
+    </v-navigation-drawer> -->
+     <appBar></appBar>
     <v-content>
       <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <v-flex shrink></v-flex>
+        <v-layout justify-center>
+          <v-flex shrink>
+          <router-view></router-view>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-content>
   </v-app>
 </template>
 <script>
-import HelloWorld from "./components/HelloWorld";
+import dashboard from "./components/dashboard/dashboard"
+import setup from "./components/setup/setup"
+import login from "./components/login/login"
+import appBar from './components/appBar'
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    dashboard,
+    setup,
+    login,
+    appBar
+  },
+  beforeDestroy () {
+      clearInterval(this.interval)
+  },
+  mounted () {
+    this.interval = setInterval(() => {
+      if (this.value === 100) {
+        return (this.value = 0)
+      }
+      this.value += 10
+    }, 1000)
   },
   data: () => ({
     drawer: true,
-    left: false,
-    menu: [
-        { icon: 'home', title: 'Daily Dashboard' },
-        { icon: 'info', title: 'Set Up' },
-        { icon: 'warning', title: 'See the tree' }
-      ]
+    left: false
   })
 };
 </script>
+<style scoped>
+/* card */
+.v-input__slider {
+  width: 100%;
+}
+/* progress circular */
+.v-progress-circular {
+  margin: 1rem;
+}
+</style>
