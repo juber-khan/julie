@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <div>
       <v-navigation-drawer app v-model="drawer" left disable-resize-watcher>
         <v-list shaped>
           <v-list-item-group v-model="item" color="primary">
@@ -25,7 +25,7 @@
         </div>
         <v-icon dark>exit_to_app</v-icon>
       </v-app-bar>
-    </span>
+    </div>
 </template>
 <script>
 export default {

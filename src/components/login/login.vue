@@ -1,16 +1,21 @@
 <template>
-  <v-content>
+  <div id="app">
+  <v-app id="inspire">
+    <v-content>
       <v-container
         fluid
-        fill-height>
+        fill-height
+      >
         <v-layout
           align-center
-          justify-center>
+          justify-center
+        >
           <v-flex
             xs12
             sm8
-            md4>
-            <v-card >
+            md4
+          >
+            <v-card class="elevation-12">
               <v-toolbar
                 color="primary"
                 dark
@@ -63,6 +68,15 @@
                     prepend-icon="lock"
                     type="password"
                   ></v-text-field>
+                  <v-checkbox
+                      v-model="checkbox"
+                      v-validate="'required'"
+                      value="1"
+                      label="Option"
+                      data-vv-name="checkbox"
+                      type="checkbox"
+                      required
+                    ></v-checkbox>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -74,6 +88,8 @@
         </v-layout>
       </v-container>
     </v-content>
+  </v-app>
+</div>
 </template>
 
 <script>

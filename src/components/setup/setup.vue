@@ -1,5 +1,6 @@
 <template>
-  <v-container>
+  <v-container fluid fill-height>
+    <v-layout justify-center align-center column pa-5>
     <v-card
       class="mx-auto"
       :width="width"
@@ -120,6 +121,7 @@
         </template>
       </v-data-table>
     </v-card>
+    </v-layout>
   </v-container>
 </template>
 
