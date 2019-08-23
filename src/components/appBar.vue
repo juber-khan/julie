@@ -20,20 +20,19 @@
         <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>{{appTitle}}</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn text class="hidden-sm-and-down">Daily Dashboard</v-btn>
-        <v-btn text class="hidden-sm-and-down">Set up</v-btn>
-        <v-btn text class="hidden-sm-and-down">Tree</v-btn>&nbsp;
+        <div v-for="(item, index) in menu" :key="index">
+          <v-btn text class="hidden-sm-and-down" :to="item.path">{{item.title}}</v-btn>
+        </div>
         <v-icon dark>exit_to_app</v-icon>
       </v-app-bar>
     </span>
 </template>
-
 <script>
 export default {
   data: () => ({
     drawer: false,
     appTitle: "JULIE",
-    item:1,
+    item: 1,
     menu: [
       { icon: "dashboard", title: "Daily Dashboard", path: "/" },
       { icon: "settings_applications", title: "Set Up", path: "/setup" },

@@ -2,7 +2,7 @@
   <v-app>
     <appBar></appBar>
     <v-content>
-      <v-container fluid fill-height>
+      <v-container fill-height>
         <v-layout justify-center>
           <v-flex shrink>
             <router-view></router-view>
