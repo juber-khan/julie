@@ -53,9 +53,9 @@
     multi-sort
   >
   <template v-slot:item.month="{ item }">
-          <v-shrink>
+          <v-flex shrink>
             <v-progress-linear class="m-5" v-model="skill" color="amber" height="25" width="80" reactive></v-progress-linear>
-          </v-shrink>
+          </v-flex>
           </template>
   </v-data-table>
     </v-card>
