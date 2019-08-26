@@ -17,6 +17,10 @@ export default {
 };
 </script>
 <style scoped>
+
+.body{
+    background-color: #eeeeee!;
+}
 .v-text-field input {
   font-size: 1.2em;
 }

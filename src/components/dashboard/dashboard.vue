@@ -1,65 +1,49 @@
 <template>
-  <v-container fluid fill-height style="max-height: 100vh;">
+  <v-container fluid fill-height>
     <v-layout justify-center align-center column pa-5>
-    <v-card
-      class="mx-auto"
-      :flat="flat"
-      :loading="loading"
-      :outlined="outlined"
-      :raised="raised"
-      :width="width"
-      :height="height">
-      <div class="text-center">
-        <v-progress-circular
-          :rotate="360"
-          :size="70"
-          :width="5"
-          :value="value"
-          color="teal"
-        >{{ value }}</v-progress-circular>
-        <div>Days Left</div>
-      </div>
-    </v-card>
-  <v-card
-      class="mt-5 mx-auto"
-      :flat="flat"
-      :loading="loading"
-      :outlined="outlined"
-      :raised="raised"
-      :width="width"
-      :height="height">
-      <div class="text-center">
-        <v-progress-linear class="m-5" v-model="skill" color="amber" height="25" width="80" reactive></v-progress-linear>
+      <v-card class="mx-auto"
+        :width="width">
         <div class="text-center">
-          Chips Sold :
-          <span>18 cr</span>
+          <v-progress-circular
+            :rotate="360"
+            :size="50"
+            :width="5"
+            :value="value"
+            color="teal"
+          >{{ value }}</v-progress-circular>
+          <span>Days Left</span>
         </div>
-      </div>
-    </v-card>
-    <v-card
-      class="mt-5 mx-auto"
-      :flat="flat"
-      :loading="loading"
-      :outlined="outlined"
-      :raised="raised"
-      :width="width"
-      :height="height"
-      margin:
-    >
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    :sort-by="['calories', 'fat']"
-    :sort-desc="[false, true]"
-    multi-sort
-  >
-  <template v-slot:item.month="{ item }">
-          <v-flex shrink>
-            <v-progress-linear class="m-5" v-model="skill" color="amber" height="25" width="80" reactive></v-progress-linear>
-          </v-flex>
-          </template>
-  </v-data-table>
-    </v-card>
+      </v-card>
+      <v-card class="mt-5 pa-5 mx-auto" :width="width">
+         <v-switch class="ml-5"
+              color="info"
+              value="info"
+              hide-details
+            ></v-switch>
+        <div class="text-center">
+          <v-progress-linear class="mt-5 md-5" v-model="skill" color="amber" height="25" width="70" reactive></v-progress-linear>
+          <div class="text-center pt-5">
+            Bonus Acheived :
+            <span>18 cr</span>
+          </div>
+          <div class="text-center pt-5">
+            Today :
+            <span>18 cr</span>
+          </div>
+          <div class="text-center pt-5">
+            Chips Balance :
+            <span>18 cr</span>
+          </div>
+        </div>
+      </v-card>
+      <h1>My Teams</h1>
+      <!-- <v-card class="mt-5 mx-auto"
+        :width="width"  
+        :height="height">
+      </v-card> -->
+          <v-card class="mt-5 pa-2 mx-auto" :width="width"
+            v-for="(item, i) in items" :key="i"> A
+          </v-card>
     </v-layout>
   </v-container>
 </template>

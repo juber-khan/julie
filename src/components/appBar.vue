@@ -17,7 +17,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-app-bar app clipped-right color="blue-grey" dark>
-        <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon class="hidden-md-and-up" @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>{{appTitle}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <div v-for="(item, index) in menu" :key="index">
