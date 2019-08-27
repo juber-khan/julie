@@ -2,17 +2,14 @@
     <v-container>
         <v-progress-linear dark height="20" rounded reactive
         color="green">
-            <template>
-            
+            <template>  
         </template>
       </v-progress-linear>
-        <v-layout row wrap>
-            <v-flex xs12>
-                 <span>A</span>
-                 <span>B</span>
-                 <span>C</span>
-                 <span>D</span>
-            </v-flex>
+        <v-layout justify-end>
+            <v-flex xs3>A</v-flex>
+            <v-flex xs3>B</v-flex>
+            <v-flex xs3>C</v-flex>
+            <v-flex xs3>D</v-flex>
         </v-layout>
     </v-container> 
 </template>

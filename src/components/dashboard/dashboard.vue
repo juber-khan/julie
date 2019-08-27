@@ -36,8 +36,8 @@
         </div>
       </v-card>
       <h1>My Teams</h1>
-      <v-container  column class="my-2">
-        <v-card flat class="pa-2" v-for="dist in distributors" :key="dist.id">
+      <v-container justify-center class="my-2">
+        <v-card flat  class="pa-2" v-for="dist in distributors" :key="dist.id">
             <v-layout row wrap class="pa-3 good">
                 <v-flex xs12 md2>
                     <div class="caption grey--text">UserName</div>

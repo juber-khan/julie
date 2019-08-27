@@ -8,7 +8,6 @@
 </template>
 <script>
 import appBar from "../appBar";
-
 export default {
   name: "App",
   components: {
