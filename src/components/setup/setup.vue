@@ -1,10 +1,10 @@
 <template>
   <v-container fluid fill-height>
-    <v-layout justify-center align-center>
-      <v-flex>
+    <v-layout column align-center>
+      <!-- <v-flex> -->
         <!-- first row -->
         <v-row >
-          <v-col class="d-flex" cols="sm">
+          <v-col right> 
             <v-select :width="800"
               class="ma-5"
               :items="states"
@@ -16,7 +16,7 @@
         </v-row>
       <!-- second row -->
         <v-row>
-          <v-col >
+          <v-col xs12 sm8 offset-sm-2>
             <v-card>
                 <v-card-title>Total Assigned</v-card-title>
                 <v-card-text>7/23</v-card-text>
@@ -101,7 +101,7 @@
             </template>
           </v-data-table>
         </v-card>
-      </v-flex>
+      <!-- </v-flex> -->
     </v-layout>
   </v-container>
 </template>

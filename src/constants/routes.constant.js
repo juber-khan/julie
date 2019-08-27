@@ -3,6 +3,7 @@ import DashboardLayout from '../components/layouts/dashboard_layout.vue'
 import Setup from '../components/setup/setup.vue'
 import Login from '../components/login/login.vue'
 import AuthLayout from '../components/layouts/auth_layout.vue'
+import Tree from '../components/tree/tree.vue'
 
 const routes = [
   {
@@ -14,6 +15,12 @@ const routes = [
         path: '/setup',
         name: 'setup',
         component: Setup,
+        meta: { requiresAuth: true, is_admin: true }
+      },
+      {
+        path: '/tree',
+        name: 'tree',
+        component: Tree,
         meta: { requiresAuth: true, is_admin: true }
       }
     ]

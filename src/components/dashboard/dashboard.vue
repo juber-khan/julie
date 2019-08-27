@@ -1,8 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <v-layout justify-center align-center column pa-5>
-      <v-card class="mx-auto"
-        :width="width">
+      <v-card class="mx-auto" :width="width">
         <div class="text-center">
           <v-progress-circular
             :rotate="360"
@@ -37,14 +36,15 @@
         </div>
       </v-card>
       <h1>My Teams</h1>
-      <!-- <v-card class="mt-5 mx-auto"
-        :width="width"  
-        :height="height">
-      </v-card> -->
-          <v-card class="mt-5 pa-2 mx-auto" :width="width"
-            v-for="(item, i) in items" :key="i"> A
-          </v-card>
-    </v-layout>
+        <v-card flat class="pa-3">
+            <v-layout row wrap>
+              <v-flex sm12 md3>
+                <div class="caption grey--text">User Name</div>
+                <div>User Name</div>
+                </v-flex>
+          </v-layout>
+      </v-card>
+      </v-layout>
   </v-container>
 </template>
 <script>

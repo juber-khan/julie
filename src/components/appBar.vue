@@ -23,7 +23,7 @@
         <div v-for="(item, index) in menu" :key="index">
           <v-btn text class="hidden-sm-and-down" :to="item.path">{{item.title}}</v-btn>
         </div>
-        <v-icon dark>exit_to_app</v-icon>
+        <v-icon dark right>exit_to_app</v-icon>
       </v-app-bar>
     </div>
 </template>
