@@ -36,20 +36,41 @@
         </div>
       </v-card>
       <h1>My Teams</h1>
-        <v-card flat class="pa-3">
-            <v-layout row wrap>
-              <v-flex sm12 md3>
-                <div class="caption grey--text">User Name</div>
-                <div>User Name</div>
+      <v-container  column class="my-2">
+        <v-card flat class="pa-2" v-for="dist in distributors" :key="dist.id">
+            <v-layout row wrap class="pa-3 good">
+                <v-flex xs12 md2>
+                    <div class="caption grey--text">UserName</div>
+                    <div>{{ dist.userName}}</div>
                 </v-flex>
-          </v-layout>
-      </v-card>
+                <v-flex xs12  md6>
+                    <div class="caption grey--text">Performance</div>
+                    <v-flex class="px-5">
+                        <SmallProgressBar :chips="dist"></SmallProgressBar>
+                    </v-flex>
+                </v-flex>
+                <v-flex xs6 md2>
+                    <div class="caption grey--text">Chips Left</div>
+                    <div>{{dist.chipsLeft}}</div>
+                </v-flex>
+                <v-flex xs6 md2>
+                    <div class="caption grey--text">Call</div>
+                    <v-icon color="green">call</v-icon>
+                    <span left>{{dist.call}}</span>
+                </v-flex>
+            </v-layout>
+            <v-divider class="md-3"></v-divider>
+        </v-card>
+    </v-container>
       </v-layout>
   </v-container>
 </template>
 <script>
+import SmallProgressBar from './small_progressbar';
 export default {
-
+  components : {
+    SmallProgressBar
+  },
   beforeDestroy () {
       clearInterval(this.interval)
   },
@@ -66,6 +87,16 @@ export default {
     left: false,
     interval: {},
     skill: 20,
+    distributors : [
+        {
+            id: 1 , userName : "ABC", progress : 60, chipsLeft : 3000, totalChips:5000, call : "9021322575"
+        },{
+            id: 2 , userName : "XYZ", progress : 50, chipsLeft : 40000,totalChips:6000, call : "9021322575"
+
+        },{
+            id: 3 , userName : "CDF", progress : 40, chipsLeft : 5000, totalChips:7000, call : "9021322575"
+        }
+    ],
     items: [
       {
         color: '#1F7087',
@@ -130,5 +161,12 @@ export default {
 /* progress circular */
 .v-progress-circular {
   margin: 1rem;
+}
+
+.good{
+    border-left: 5px solid green;
+}
+.bad{
+    border-left: 5px solid red;
 }
 </style>
