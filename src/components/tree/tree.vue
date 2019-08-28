@@ -2,7 +2,13 @@
   <v-container>
     <v-layout >
       <v-flex sm12 md8 offset-md-2 justify-center class="my-2">
-            <div class="pa-" v-for="dist in distributors" :key="dist.id">
+              <v-toolbar color="blue" dark>
+                <v-toolbar-title>My Team</v-toolbar-title>
+                <v-spacer></v-spacer>
+                 <v-text-field class="mt-6 m-5" left label="Search" prepend-inner-icon="search" solo-inverted
+                       v-model="search" clearable  @click:clear="clearSearch"></v-text-field>
+              </v-toolbar>
+            <v-list class="pa-" v-for="dist in filteredItems" :key="dist.id">
                 <v-card class="pa-5 my-3 good">
                   <v-layout row>
                     <v-flex xs12 md2>
@@ -26,7 +32,7 @@
                     </v-flex>
                     </v-layout>
                 </v-card>
-                </div>
+                </v-list>
         </v-flex>
     </v-layout>
 </v-container>  
@@ -38,10 +44,16 @@ export default {
   components : {
     SmallProgressBar
   },
+  methods : {
+    clearSearch () {
+        this.search="";
+      }
+  },
   beforeDestroy () {
       clearInterval(this.interval)
   },
   mounted () {
+    
     this.interval = setInterval(() => {
       if (this.value === 100) {
         return (this.value = 0)
@@ -49,7 +61,17 @@ export default {
       this.value += 10
     }, 1000)
   },
+  computed: {
+        filteredItems() {
+            return this.distributors.filter(item => {
+              if(!this.search) return this.distributors;
+                return (item.userName.toLowerCase().includes(this.search.toLowerCase()) ||
+                    item.call.toLowerCase().includes(this.search.toLowerCase()));
+            });
+        }
+  },
   data: () => ({
+    search: '',
     drawer: true,
     left: false,
     interval: {},
