@@ -8,7 +8,7 @@
         </v-layout>
         <v-layout>
             <v-flex xs12 sm12>
-                <v-progress-linear dark v-model="skill" height="20" rounded reactive
+                <v-progress-linear dark v-model="skill" height="30"  rounded reactive
                 color="green">
                     <template>  
                 </template>
