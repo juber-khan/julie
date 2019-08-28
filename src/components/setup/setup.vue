@@ -58,11 +58,16 @@
           :headers="headers"
           :items="distributors"
           sort-by="target"
+           :search="search"
         >
           <template v-slot:top>
-            <v-toolbar flat color="white">
-              <v-toolbar-title>My Teams</v-toolbar-title>
-            </v-toolbar>
+           <v-toolbar color="blue" light>
+                <v-toolbar-title>My Team</v-toolbar-title>
+                <v-spacer></v-spacer>
+                 <v-text-field class=" m-5" left label="Search" append-inner-icon="search" solo-inverted
+                       v-model="search" clearable single-line
+        hide-details></v-text-field>
+              </v-toolbar>
           </template>
           <template v-slot:item.month="{ item }">
             <v-select :items="months" :menu-props="{ top: true, offsetY: true }" label="Label"></v-select>
@@ -111,6 +116,7 @@
 import { debuglog } from "util";
 export default {
   data: () => ({
+    search:"",
     months: ["September", "October", "November"],
     dialog: false,
     width: 1000,

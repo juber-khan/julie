@@ -2,7 +2,7 @@
   <v-container>
     <v-layout >
       <v-flex sm12 md8 offset-md-2 justify-center class="my-2">
-              <v-toolbar color="blue" dark>
+              <v-toolbar color="blue" light>
                 <v-toolbar-title>My Team</v-toolbar-title>
                 <v-spacer></v-spacer>
                  <v-text-field class="mt-6 m-5" left label="Search" prepend-inner-icon="search" solo-inverted
@@ -157,6 +157,9 @@ export default {
 }
 .bad{
     border-left: 5px solid red;
+}
+.v-input__icon--prepend-inner .v-icon {
+  color:blue;
 }
 </style>
 
