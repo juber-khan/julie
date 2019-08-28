@@ -1,11 +1,21 @@
 <template>
     <v-container>
-        <v-progress-linear dark height="20" rounded reactive
-        color="green">
-            <template>  
-        </template>
-      </v-progress-linear>
-        <v-layout justify-end>
+        <v-layout row wrap>
+            <v-flex xs3>A</v-flex>
+            <v-flex xs3>B</v-flex>
+            <v-flex xs3>C</v-flex>
+            <v-flex xs3>D</v-flex>
+        </v-layout>
+        <v-layout>
+            <v-flex xs12 sm12>
+                <v-progress-linear dark v-model="skill" height="20" rounded reactive
+                color="green">
+                    <template>  
+                </template>
+            </v-progress-linear>
+            </v-flex>
+        </v-layout>
+        <v-layout row wrap>
             <v-flex xs3>A</v-flex>
             <v-flex xs3>B</v-flex>
             <v-flex xs3>C</v-flex>
@@ -19,6 +29,11 @@ export default {
         'chips',
     ],
     computed : {
+    },
+    data(){
+      return {
+        skill : 60
+      }
     }
 }
 </script>

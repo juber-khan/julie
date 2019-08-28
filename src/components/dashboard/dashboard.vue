@@ -20,7 +20,7 @@
               hide-details
             ></v-switch>
         <div class="text-center">
-          <v-progress-linear class="mt-5 md-5" v-model="skill" color="amber" height="25" width="70" reactive></v-progress-linear>
+          <ProgressBar></ProgressBar>
           <div class="text-center pt-5">
             Bonus Acheived :
             <span>18 cr</span>
@@ -39,11 +39,11 @@
       <v-container justify-center class="my-2">
         <v-card flat  class="pa-2" v-for="dist in distributors" :key="dist.id">
             <v-layout row wrap class="pa-3 good">
-                <v-flex xs12 md2>
+                <v-flex xs2 md2>
                     <div class="caption grey--text">UserName</div>
                     <div>{{ dist.userName}}</div>
                 </v-flex>
-                <v-flex xs12  md6>
+                <v-flex xs12 md6>
                     <div class="caption grey--text">Performance</div>
                     <v-flex class="px-5">
                         <SmallProgressBar :chips="dist"></SmallProgressBar>
@@ -66,10 +66,12 @@
   </v-container>
 </template>
 <script>
+import ProgressBar from './progressbar';
 import SmallProgressBar from './small_progressbar';
 export default {
   components : {
-    SmallProgressBar
+    SmallProgressBar, 
+    ProgressBar
   },
   beforeDestroy () {
       clearInterval(this.interval)

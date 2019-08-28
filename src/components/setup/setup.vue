@@ -1,72 +1,89 @@
 <template>
-  <v-container fluid fill-height>
-    <v-layout column align-center>
-      <!-- <v-flex> -->
-        <!-- first row -->
-        <v-row >
-          <v-col right> 
-            <v-select :width="800"
-              class="ma-5"
-              :items="states"
-              :menu-props="{ top: true, offsetY: true }"
-              label="Solo field"
-              solo
+  <v-container fluid  grid-list-xl>
+    <v-layout>
+      <v-flex sm6 md3 offset-md-7 offset-sm-6>
+         <v-select class="ma-2" :items="months" :menu-props="{ top: true, offsetY: true }"
+              label="Solo field" solo
             ></v-select>
-          </v-col>
-        </v-row>
-      <!-- second row -->
-        <v-row>
-          <v-col xs12 sm8 offset-sm-2>
-            <v-card>
-                <v-card-title>Total Assigned</v-card-title>
-                <v-card-text>7/23</v-card-text>
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card>
-                <v-card-title center>Total Target</v-card-title>
-                <v-card-text>7/23</v-card-text>
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card :width="600">
-                <v-card-title>Total Bonus</v-card-title>
-                    <v-simple-table>
-                      <thead>
-                        <tr>
-                          <th class="text-left">Amount</th>
-                          <th class="text-left">Per(%)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="item in desserts.slice(0,3)" :key="item.name">
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.calories }}</td>
-                        </tr>
-                      </tbody>
-                    </v-simple-table>
-                <!-- </v-card-text> -->
-            </v-card>
-          </v-col>
-        </v-row>
-         <!-- third row -->
-         <v-card class="mt-5 pa-5 mx-auto" :width="width" :height="height">
-          <v-card-title>Distributor's Performance</v-card-title>
-          <v-data-table :headers="headers" :items="desserts" sort-by="calories">
-            <!-- <template v-slot:top> -->
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap >
+        <v-flex sm12 md2 offset-md-2>
+          <v-card ripple class="text-center" height="100%" >
+              <v-card-title class="title">Total Assigned</v-card-title>
+              <v-divider></v-divider>
+              <v-card-text>
+                <v-progress-circular
+                    :rotate="360"
+                    :size="70"
+                    :width="10"
+                    :value="60"
+                    color="teal"
+                  >
+                    7/30
+                  </v-progress-circular>
+              </v-card-text>
+          </v-card>
+        </v-flex>
+         <v-flex sm12 md2>
+          <v-card height="100%" class="text-center">
+             <v-card-title class="title">Total Target</v-card-title>
+             <v-divider class="md-3"></v-divider>
+              <v-card-text>
+                <v-progress-circular
+                    :rotate="360"
+                    :size="70"
+                    :width="10"
+                    :value="60"
+                    color="red"
+                  >
+                    7/30
+                  </v-progress-circular>
+              </v-card-text>
+          </v-card>
+        </v-flex >
+         <v-flex sm12 md4>
+          <v-card class="px-4" height="100%">
+              <v-card-title class="title text-center">Total Bonus</v-card-title>
+              <v-divider class="md-3"></v-divider>
+                  <v-simple-table>
+                    <thead>
+                      <tr>
+                        <th class="text-left">Amount</th>
+                        <th class="text-left">Per(%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in distributors.slice(0,3)" :key="item.name">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.target }}</td>
+                      </tr>
+                    </tbody>
+                  </v-simple-table>
+          </v-card>
+        </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+      <v-flex sm12 md8 offset-md-2>
+          <v-data-table :headers="headers" :items="distributors" sort-by="target">
+            <template v-slot:top>
+              <v-toolbar flat color="white">
+                <v-toolbar-title>My Teams</v-toolbar-title>
+              </v-toolbar>
+            </template>
             <template v-slot:item.month="{ item }">
-              <v-select :items="states" :menu-props="{ top: true, offsetY: true }" label="Label"></v-select>
+              <v-select :items="months" :menu-props="{ top: true, offsetY: true }" label="Label"></v-select>
             </template>
             <v-toolbar color="white">
               <v-divider class="mx-4" inset vertical></v-divider>
               <v-dialog v-model="dialog" max-width="300px">
                 <v-card>
                   <v-card-title>
-                    <span class="headline">{{ formTitle }}</span>
+                    <span class="headline">formTitle</span>
                   </v-card-title>
                   <v-card-text>
                     <v-container>
-                      <v-row>
+                      <!--<v-row>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
                         </v-col>
@@ -82,7 +99,7 @@
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
                         </v-col>
-                      </v-row>
+                      </v-row>-->
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
@@ -100,16 +117,16 @@
               <v-btn color="primary" @click="initialize">Reset</v-btn>
             </template>
           </v-data-table>
-        </v-card>
-      <!-- </v-flex> -->
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import { debuglog } from 'util';
 export default {
   data: () => ({
-    states: ["Alabama", "Alaska", "American Samoa", "Arizona"],
+    months: ["September", "October", "November"],
     dialog: false,
     width: 1000,
     height: null,
@@ -120,27 +137,24 @@ export default {
         sortable: false,
         value: "name"
       },
-      { text: "Chips Balance", value: "calories" },
-      { text: "Target", value: "fat" },
-      { text: "Bonus", value: "carbs" },
+      { text: "Target", value: "target" },
+      { text: "Bonus", value: "bonus" },
       { text: "Month", value: "month" },
       { text: "Actions", value: "action", sortable: false }
     ],
-    desserts: [],
+    distributors: [],
     editedIndex: -1,
     editedItem: {
       name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
+      target: 0,
+      bonus: 0,
+      month: 0
     },
     defaultItem: {
       name: "",
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
+      target: 0,
+      bonus: 0,
+      month: 0
     }
   }),
 
@@ -162,27 +176,24 @@ export default {
 
   methods: {
     initialize() {
-      this.desserts = [
+      this.distributors = [
         {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0
+          name: "ABC",
+          target: 4556,
+          bonus: 3344,
+          month: 1
         },
         {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3
+          name: "CDF",
+          target: 1233,
+          bonus: 333,
+          month: 2
         }
       ];
     },
 
     editItem(item) {
-      debugger;
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.distributors.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
@@ -197,12 +208,13 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        Object.assign(this.distributors[this.editedIndex], this.editedItem);
       } else {
-        this.desserts.push(this.editedItem);
+        this.distributors.push(this.editedItem);
       }
       this.close();
     }
   }
 };
 </script>
+
