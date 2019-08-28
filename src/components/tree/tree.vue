@@ -1,233 +1,141 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    sort-by="calories"
-    class="elevation-1"
-  >
-    <template v-slot:top>
-      <v-toolbar flat color="white">
-        <v-toolbar-title>My CRUD</v-toolbar-title>
-        <v-divider
-          class="mx-4"
-          inset
-          vertical
-        ></v-divider>
-        <div class="flex-grow-1"></div>
-        <v-dialog v-model="dialog" max-width="500px">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
-          </template>
-          <v-card>
-            <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
-            </v-card-title>
-
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-
-            <v-card-actions>
-              <div class="flex-grow-1"></div>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </template>
-    <template v-slot:item.action="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        edit
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        delete
-      </v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template>
-  </v-data-table>
+  <v-container>
+    <v-layout >
+      <v-flex sm12 md8 offset-md-2 justify-center class="my-2">
+            <div class="pa-" v-for="dist in distributors" :key="dist.id">
+                <v-card class="pa-5 my-3 good">
+                  <v-layout row>
+                    <v-flex xs12 md2>
+                        <div class="caption grey--text">UserName</div>
+                        <div>{{ dist.userName}}</div>
+                    </v-flex>
+                    <v-flex xs12 md6>
+                        <div class="caption grey--text">Performance</div>
+                        <v-flex class="px-1">
+                            <SmallProgressBar :chips="dist"></SmallProgressBar>
+                        </v-flex>
+                    </v-flex>
+                    <v-flex sm6 md2>
+                        <div class="caption grey--text">Chips Left</div>
+                        <div>{{dist.chipsLeft}}</div>
+                    </v-flex>
+                    <v-flex sm6 md2>
+                        <div class="caption grey--text">Call</div>
+                        <v-icon color="green">call</v-icon>
+                        <span left>{{dist.call}}</span>
+                    </v-flex>
+                    </v-layout>
+                </v-card>
+                </div>
+        </v-flex>
+    </v-layout>
+</v-container>  
 </template>
+
 <script>
-  export default {
-    data: () => ({
-      dialog: false,
-      headers: [
+import SmallProgressBar from '../dashboard/small_progressbar';
+export default {
+  components : {
+    SmallProgressBar
+  },
+  beforeDestroy () {
+      clearInterval(this.interval)
+  },
+  mounted () {
+    this.interval = setInterval(() => {
+      if (this.value === 100) {
+        return (this.value = 0)
+      }
+      this.value += 10
+    }, 1000)
+  },
+  data: () => ({
+    drawer: true,
+    left: false,
+    interval: {},
+    skill: 20,
+    distributors : [
         {
-          text: 'Dessert (100g serving)',
-          align: 'left',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Actions', value: 'action', sortable: false },
-      ],
-      desserts: [],
-      editedIndex: -1,
-      editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
-      },
-      defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
-      },
-    }),
+            id: 1 , userName : "ABC", progress : 60, chipsLeft : 3000, totalChips:5000, call : "9021322575"
+        },{
+            id: 2 , userName : "XYZ", progress : 50, chipsLeft : 40000,totalChips:6000, call : "9021322575"
 
-    computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        },{
+            id: 3 , userName : "CDF", progress : 40, chipsLeft : 5000, totalChips:7000, call : "9021322575"
+        }
+    ],
+    items: [
+      {
+        color: '#1F7087',
+        title: 'Supermodel',
+        artist: 'Foster the People',
       },
-    },
-
-    watch: {
-      dialog (val) {
-        val || this.close()
+      {
+        color: '#952175',
+        title: 'Halcyon Days',
+        artist: 'Ellie Goulding',
       },
-    },
-
-    created () {
-      this.initialize()
-    },
-
-    methods: {
-      initialize () {
-        this.desserts = [
+    ],
+   
+    flat: false,
+    media: true,
+    loading: false,
+    actions: true,
+    outlined: false,
+    raised: false,
+    width: 800,
+    height: undefined,
+    value: 10,
+    headers: [
+          {
+            text: 'Dessert (100g serving)',
+            align: 'left',
+            sortable: false,
+            value: 'name',
+          },
+          { text: 'Calories', value: 'calories' },
+          { text: 'Fat (g)', value: 'fat' },
+          { text: 'Carbs (g)', value: 'carbs' },
+          { text: "Month", value: "month" },
+          { text: 'Iron (%)', value: 'iron' },
+        ],
+        desserts: [
           {
             name: 'Frozen Yogurt',
-            calories: 159,
+            calories: 200,
             fat: 6.0,
             carbs: 24,
             protein: 4.0,
+            iron: '1%',
           },
           {
             name: 'Ice cream sandwich',
-            calories: 237,
+            calories: 200,
             fat: 9.0,
             carbs: 37,
             protein: 4.3,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-          },
-        ]
-      },
+            iron: '1%',
+          }
+        ],
+  })
+};
+</script>
+<style scoped>
+/* card */
+.v-input__slider {
+  width: 100%;
+}
+/* progress circular */
+.v-progress-circular {
+  margin: 1rem;
+}
 
-      editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
-      },
+.good{
+    border-left: 5px solid green;
+}
+.bad{
+    border-left: 5px solid red;
+}
+</style>
 
-      deleteItem (item) {
-        const index = this.desserts.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
-      },
-
-      close () {
-        this.dialog = false
-        setTimeout(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        }, 300)
-      },
-
-      save () {
-        if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
-        } else {
-          this.desserts.push(this.editedItem)
-        }
-        this.close()
-      },
-    },
-  }
 </script>

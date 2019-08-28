@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container>
     <v-layout justify-center align-center column pa-5>
       <v-card class="mx-auto" :width="width">
         <div class="text-center">
@@ -14,11 +14,7 @@
         </div>
       </v-card>
       <v-card class="mt-5 pa-5 mx-auto" :width="width">
-         <v-switch class="ml-5"
-              color="info"
-              value="info"
-              hide-details
-            ></v-switch>
+        <v-switch class="ml-5" color="info" value="info" hide-details></v-switch>
         <div class="text-center">
           <ProgressBar></ProgressBar>
           <div class="text-center pt-5">
@@ -35,83 +31,105 @@
           </div>
         </div>
       </v-card>
-      <h1>My Teams</h1>
-      <v-container justify-center class="my-2">
-        <v-card flat  class="pa-2" v-for="dist in distributors" :key="dist.id">
-            <v-layout row wrap class="pa-3 good">
-                <v-flex xs2 md2>
-                    <div class="caption grey--text">UserName</div>
-                    <div>{{ dist.userName}}</div>
+
+      <v-container></v-container>
+    </v-layout>
+    <v-container>
+      <v-layout>
+        <v-flex sm12 md8 offset-md-2 justify-center class="my-2">
+          <div class="pa-" v-for="dist in distributors" :key="dist.id">
+            <v-card class="pa-5 my-3 good">
+              <v-layout row>
+                <v-flex xs12 md2>
+                  <div class="caption grey--text">UserName</div>
+                  <div>{{ dist.userName}}</div>
                 </v-flex>
                 <v-flex xs12 md6>
-                    <div class="caption grey--text">Performance</div>
-                    <v-flex class="px-5">
-                        <SmallProgressBar :chips="dist"></SmallProgressBar>
-                    </v-flex>
+                  <div class="caption grey--text">Performance</div>
+                  <v-flex class="px-1">
+                    <SmallProgressBar :chips="dist"></SmallProgressBar>
+                  </v-flex>
                 </v-flex>
-                <v-flex xs6 md2>
-                    <div class="caption grey--text">Chips Left</div>
-                    <div>{{dist.chipsLeft}}</div>
+                <v-flex sm6 md2>
+                  <div class="caption grey--text">Chips Left</div>
+                  <div>{{dist.chipsLeft}}</div>
                 </v-flex>
-                <v-flex xs6 md2>
-                    <div class="caption grey--text">Call</div>
-                    <v-icon color="green">call</v-icon>
-                    <span left>{{dist.call}}</span>
+                <v-flex sm6 md2>
+                  <div class="caption grey--text">Call</div>
+                  <v-icon color="green">call</v-icon>
+                  <span left>{{dist.call}}</span>
                 </v-flex>
-            </v-layout>
-            <v-divider class="md-3"></v-divider>
-        </v-card>
-    </v-container>
+              </v-layout>
+            </v-card>
+          </div>
+        </v-flex>
       </v-layout>
+    </v-container>
   </v-container>
 </template>
 <script>
-import ProgressBar from './progressbar';
-import SmallProgressBar from './small_progressbar';
+import ProgressBar from "./progressbar";
+import SmallProgressBar from "./small_progressbar";
 export default {
-  components : {
-    SmallProgressBar, 
+  components: {
+    SmallProgressBar,
     ProgressBar
   },
-  beforeDestroy () {
-      clearInterval(this.interval)
+  beforeDestroy() {
+    clearInterval(this.interval);
   },
-  mounted () {
+  mounted() {
     this.interval = setInterval(() => {
       if (this.value === 100) {
-        return (this.value = 0)
+        return (this.value = 0);
       }
-      this.value += 10
-    }, 1000)
+      this.value += 10;
+    }, 1000);
   },
   data: () => ({
     drawer: true,
     left: false,
     interval: {},
     skill: 20,
-    distributors : [
-        {
-            id: 1 , userName : "ABC", progress : 60, chipsLeft : 3000, totalChips:5000, call : "9021322575"
-        },{
-            id: 2 , userName : "XYZ", progress : 50, chipsLeft : 40000,totalChips:6000, call : "9021322575"
-
-        },{
-            id: 3 , userName : "CDF", progress : 40, chipsLeft : 5000, totalChips:7000, call : "9021322575"
-        }
+    distributors: [
+      {
+        id: 1,
+        userName: "ABC",
+        progress: 60,
+        chipsLeft: 3000,
+        totalChips: 5000,
+        call: "9021322575"
+      },
+      {
+        id: 2,
+        userName: "XYZ",
+        progress: 50,
+        chipsLeft: 40000,
+        totalChips: 6000,
+        call: "9021322575"
+      },
+      {
+        id: 3,
+        userName: "CDF",
+        progress: 40,
+        chipsLeft: 5000,
+        totalChips: 7000,
+        call: "9021322575"
+      }
     ],
     items: [
       {
-        color: '#1F7087',
-        title: 'Supermodel',
-        artist: 'Foster the People',
+        color: "#1F7087",
+        title: "Supermodel",
+        artist: "Foster the People"
       },
       {
-        color: '#952175',
-        title: 'Halcyon Days',
-        artist: 'Ellie Goulding',
-      },
+        color: "#952175",
+        title: "Halcyon Days",
+        artist: "Ellie Goulding"
+      }
     ],
-   
+
     flat: false,
     media: true,
     loading: false,
@@ -122,36 +140,36 @@ export default {
     height: undefined,
     value: 10,
     headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'left',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: "Month", value: "month" },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 200,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 200,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          }
-        ],
+      {
+        text: "Dessert (100g serving)",
+        align: "left",
+        sortable: false,
+        value: "name"
+      },
+      { text: "Calories", value: "calories" },
+      { text: "Fat (g)", value: "fat" },
+      { text: "Carbs (g)", value: "carbs" },
+      { text: "Month", value: "month" },
+      { text: "Iron (%)", value: "iron" }
+    ],
+    desserts: [
+      {
+        name: "Frozen Yogurt",
+        calories: 200,
+        fat: 6.0,
+        carbs: 24,
+        protein: 4.0,
+        iron: "1%"
+      },
+      {
+        name: "Ice cream sandwich",
+        calories: 200,
+        fat: 9.0,
+        carbs: 37,
+        protein: 4.3,
+        iron: "1%"
+      }
+    ]
   })
 };
 </script>
@@ -165,10 +183,10 @@ export default {
   margin: 1rem;
 }
 
-.good{
-    border-left: 5px solid green;
+.good {
+  border-left: 5px solid green;
 }
-.bad{
-    border-left: 5px solid red;
+.bad {
+  border-left: 5px solid red;
 }
 </style>

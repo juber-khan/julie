@@ -1,7 +1,7 @@
 <template>
     <v-container>
-        <v-layout row wrap>
-            <v-flex xs3>A</v-flex>
+        <v-layout row wrap class="text-end">
+            <v-flex xs3 >A</v-flex>
             <v-flex xs3>B</v-flex>
             <v-flex xs3>C</v-flex>
             <v-flex xs3>D</v-flex>
@@ -15,7 +15,7 @@
             </v-progress-linear>
             </v-flex>
         </v-layout>
-        <v-layout row wrap>
+        <v-layout row wrap class="text-end">
             <v-flex xs3>A</v-flex>
             <v-flex xs3>B</v-flex>
             <v-flex xs3>C</v-flex>
