@@ -1,19 +1,19 @@
 <template>
   <v-container>
-    <v-layout justify-center align-center column pa-5>
+    <v-layout justify-center align-center column pa-2>
       <v-card class="mx-auto" :width="width">
         <div class="text-center">
           <v-progress-circular
             :rotate="360"
             :size="50"
             :width="5"
-            :value="value"
+            :value="progressDays"
             color="teal"
-          >{{ value }}</v-progress-circular>
+          >{{ calculateNoDays() }}</v-progress-circular>
           <span>Days Left</span>
         </div>
       </v-card>
-      <v-card class="mt-5 pa-5 mx-auto" :width="width">
+      <v-card class="mt-3 px-1 mx-auto" :width="width">
         <v-switch class="ml-5" color="info" value="info" hide-details></v-switch>
         <div class="text-center">
           <ProgressBar></ProgressBar>
@@ -76,6 +76,7 @@
 <script>
 import ProgressBar from "./progressbar";
 import SmallProgressBar from "./small_progressbar";
+import StaticConfig from "../../config/static.config";
 export default {
   components: {
     SmallProgressBar,
@@ -86,8 +87,18 @@ export default {
   },
   methods:{
     clearSearch () {
-        this.search="";
-      },
+       this.search = "";
+    },
+    calculateNoDays(){
+      let oneDay = 24*60*60*1000;
+      let now = new Date();
+      let startDate = new Date(now.getFullYear(), now.getMonth() + 1,  StaticConfig.startDay);
+      let diffDays = Math.round(Math.abs((startDate.getTime() - now.getTime())/(oneDay)));
+      let totalDays = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+      this.progressDays = Math.abs((diffDays/totalDays)*100);
+      return diffDays;
+    }
+
   },
   mounted() {
     this.interval = setInterval(() => {
@@ -107,6 +118,7 @@ export default {
         }
   },
   data: () => ({
+    progressDays: 0,
     search :"",
     drawer: true,
     left: false,

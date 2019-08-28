@@ -64,7 +64,7 @@
            <v-toolbar color="blue" light>
                 <v-toolbar-title>My Team</v-toolbar-title>
                 <v-spacer></v-spacer>
-                 <v-text-field class=" m-5" left label="Search" append-inner-icon="search" solo-inverted
+                 <v-text-field class="mt-2 m-5" left label="Search" append-inner-icon="search" solo-inverted
                        v-model="search" clearable single-line
         hide-details></v-text-field>
               </v-toolbar>

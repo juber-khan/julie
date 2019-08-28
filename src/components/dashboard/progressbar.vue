@@ -1,10 +1,10 @@
 <template>
     <v-container>
         <v-layout row wrap class="text-end">
-            <v-flex xs3 >A</v-flex>
-            <v-flex xs3>B</v-flex>
-            <v-flex xs3>C</v-flex>
-            <v-flex xs3>D</v-flex>
+            <v-flex xs3>2 lakh cr</v-flex>
+            <v-flex xs3>2 lakh cr</v-flex>
+            <v-flex xs3>2 lakh cr</v-flex>
+            <v-flex xs3>2 lakh cr</v-flex>
         </v-layout>
         <v-layout>
             <v-flex xs12 sm12>
