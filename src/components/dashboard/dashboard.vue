@@ -13,20 +13,27 @@
           <span>Days Left</span>
         </div>
       </v-card>
-      <v-card class="mt-3 px-1 mx-auto" :width="width">
+      <v-card class="mt-3 px-1 py-2 mx-auto" :width="width">
         <div class="text-center">
           <ProgressBar></ProgressBar>
           <div class="text-center pt-5">
             Bonus Acheived :
-            <span>18 cr</span>
+            <!-- <span>10k</span> -->
+            <v-btn class="mx-2 white--text" fab dark small color="blue">
+                1cr
+              </v-btn>
           </div>
           <div class="text-center pt-5">
-            Today :
-            <span>18 cr</span>
+            Todays :
+             <v-btn class="mx-2 white--text" fab dark small color="red">
+                10k
+              </v-btn>
           </div>
           <div class="text-center pt-5">
             Chips Balance :
-            <span>18 cr</span>
+             <v-btn class="mx-2 white--text" fab dark small color="green">
+                20cr
+              </v-btn>
           </div>
         </div>
       </v-card>
