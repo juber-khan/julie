@@ -6,7 +6,7 @@
           class="mt-2"
           :items="months"
           :menu-props="{ top: true, offsetY: true }"
-          label="Solo field"
+          label="September"
           solo
         ></v-select>
       </v-flex>
@@ -93,10 +93,10 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                  <v-text-field v-model="editedItem.target" label="Target"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                  <v-text-field v-model="editedItem.bonus" label="Bonus"></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
@@ -170,13 +170,13 @@ export default {
       this.distributors = [
         {
           name: "ABC",
-          target: 4556,
+          target: 2,
           bonus: 3344,
           month: 1
         },
         {
           name: "CDF",
-          target: 1233,
+          target: 3,
           bonus: 333,
           month: 2
         }

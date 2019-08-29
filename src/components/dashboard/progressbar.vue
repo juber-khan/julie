@@ -16,10 +16,10 @@
             </v-flex>
         </v-layout>
         <v-layout row wrap class="text-end">
-            <v-flex xs3>A</v-flex>
-            <v-flex xs3>B</v-flex>
-            <v-flex xs3>C</v-flex>
-            <v-flex xs3>D</v-flex>
+            <v-flex xs3>200 BDT</v-flex>
+            <v-flex xs3>300 BDT</v-flex>
+            <v-flex xs3>400 BDT</v-flex>
+            <v-flex xs3>600 BDT</v-flex>
         </v-layout>
     </v-container> 
 </template>
