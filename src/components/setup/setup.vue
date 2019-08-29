@@ -43,8 +43,8 @@
             </thead>
             <tbody>
               <tr v-for="item in distributors.slice(0,3)" :key="item.name">
-                <td>{{ item.name }}</td>
-                <td>{{ item.target }}</td>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.target }} %</td>
               </tr>
             </tbody>
           </v-simple-table>
@@ -64,13 +64,12 @@
            <v-toolbar color="blue" light>
                 <v-toolbar-title>My Team</v-toolbar-title>
                 <v-spacer></v-spacer>
-                 <v-text-field class="mt-2 m-5" left label="Search" append-inner-icon="search" solo-inverted
-                       v-model="search" clearable single-line
-        hide-details></v-text-field>
+                <v-text-field class="mt-0" left label="Search" prepend-inner-icon="search" solo-inverted
+                       v-model="search" clearable single-line hide-details></v-text-field>
               </v-toolbar>
           </template>
           <template v-slot:item.month="{ item }">
-            <v-select :items="months" :menu-props="{ top: true, offsetY: true }" label="Label"></v-select>
+            <v-select class="pa-2" :items="months" :menu-props="{ top: true, offsetY: true }" label="September"></v-select>
           </template>
 
           <v-toolbar color="white">
@@ -169,16 +168,18 @@ export default {
     initialize() {
       this.distributors = [
         {
-          name: "ABC",
+          name: "Ajay",
           target: 2,
           bonus: 3344,
-          month: 1
+          month: 1,
+          amount:'2 cr'
         },
         {
-          name: "CDF",
+          name: "Aman",
           target: 3,
           bonus: 333,
-          month: 2
+          month: 2,
+          amount:'3 cr'
         }
       ];
     },

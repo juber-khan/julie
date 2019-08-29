@@ -14,7 +14,8 @@
         </div>
       </v-card>
       <v-card class="mt-3 px-1 mx-auto" :width="width">
-        <v-switch class="ml-5" color="info" value="info" hide-details></v-switch>
+        <v-switch class="ml-5" label="Chips" color="info" value="info" hide-details></v-switch>
+        <v-divider class="mt-5"></v-divider>
         <div class="text-center">
           <ProgressBar></ProgressBar>
           <div class="text-center pt-5">
@@ -31,7 +32,6 @@
           </div>
         </div>
       </v-card>
-
       <v-container></v-container>
     </v-layout>
     <v-container>
@@ -40,14 +40,14 @@
           <v-toolbar color="blue" light>
                 <v-toolbar-title>My Team</v-toolbar-title>
                 <v-spacer></v-spacer>
-                 <v-text-field class="mt-6 m-5" left label="Search" prepend-inner-icon="search" solo-inverted
+                 <v-text-field class="mt-8" left label="Search" prepend-inner-icon="search" solo-inverted
                        v-model="search" clearable  @click:clear="clearSearch"></v-text-field>
               </v-toolbar>
           <v-list class="pa-" v-for="dist in filteredItems" :key="dist.id">
             <v-card class="pa-5 my-3 good">
               <v-layout row>
                 <v-flex xs12 md2>
-                  <div class="caption grey--text">UserName</div>
+                  <div class="caption grey--text">User</div>
                   <div>{{ dist.userName}}</div>
                 </v-flex>
                 <v-flex xs12 md6>
@@ -126,12 +126,12 @@ export default {
     skill: 20,
     distributors : [
         {
-            id: 1 , userName : "ABC", progress : 60, chipsLeft : 3000, totalChips:5000, call : "9021322575"
+            id: 1 , userName : "Ajay", progress : 60, chipsLeft : 3000, totalChips:5000, call : "9021322575"
         },{
-            id: 2 , userName : "XYZ", progress : 50, chipsLeft : 40000,totalChips:6000, call : "9021322575"
+            id: 2 , userName : "Rahul", progress : 50, chipsLeft : 40000,totalChips:6000, call : "9021322575"
 
         },{
-            id: 3 , userName : "CDF", progress : 40, chipsLeft : 5000, totalChips:7000, call : "9021322575"
+            id: 3 , userName : "Manish", progress : 40, chipsLeft : 5000, totalChips:7000, call : "9021322575"
         }
     ],
     items: [
@@ -191,6 +191,8 @@ export default {
 };
 </script>
 <style scoped>
+
+
 /* card */
 .v-input__slider {
   width: 100%;
