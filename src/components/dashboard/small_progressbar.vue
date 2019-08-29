@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-progress-linear dark v-model="this.chips.progress" disabled height="20" rounded reactive
-        color="green">
+        :color="getColor(this.chips)">
             <template>
             <strong>{{ Math.ceil(this.chips.chipsLeft) }} cr</strong>
         </template>
@@ -16,11 +16,13 @@ export default {
     props : [
         'chips',
     ],
+    methods:{
+            getColor : function(item){
+                        return item.color;
+                    }
+    },
     computed : {
-        getColor : function(){
-            let color = this.chips.progrss > 50 ? 'green' : 'red';
-            return color;
-        }
+        
     }
 }
 </script>

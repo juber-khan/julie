@@ -1,6 +1,6 @@
 <template>
   <v-container fluid grid-list-xl>
-    <v-layout row wrap>
+    <!-- <v-layout row wrap>
       <v-flex sm6 md3 offset-md-7 offset-sm-6>
         <v-select
           class="mt-2"
@@ -10,7 +10,7 @@
           solo
         ></v-select>
       </v-flex>
-    </v-layout>
+    </v-layout> -->
     <v-layout row wrap>
       <v-flex sm6 md2 offset-md-2 justify-center>
         <v-card ripple height="100%" class="text-center">
@@ -68,10 +68,9 @@
                        v-model="search" clearable single-line hide-details></v-text-field>
               </v-toolbar>
           </template>
-          <template v-slot:item.month="{ item }">
+          <!-- <template v-slot:item.month="{ item }">
             <v-select class="pa-2" :items="months" :menu-props="{ top: true, offsetY: true }" label="September"></v-select>
-          </template>
-
+          </template> -->
           <v-toolbar color="white">
             <v-divider class="mx-4" inset vertical></v-divider>
           </v-toolbar>
@@ -122,14 +121,15 @@ export default {
     height: null,
     headers: [
       {
-        text: "Distributor Name",
+        text: "Distributor",
         align: "left",
         sortable: false,
         value: "name"
       },
+      { text : "Chips", value : "chips"},
       { text: "Target", value: "target" },
       { text: "Bonus", value: "bonus" },
-      { text: "Month", value: "month" },
+      // { text: "Month", value: "month" },
       { text: "Actions", value: "action", sortable: false }
     ],
     distributors: [],
@@ -172,14 +172,16 @@ export default {
           target: 2,
           bonus: 3344,
           month: 1,
-          amount:'2 cr'
+          amount:'2 cr',
+          chips : '102 cr'
         },
         {
           name: "Aman",
           target: 3,
           bonus: 333,
           month: 2,
-          amount:'3 cr'
+          amount:'3 cr',
+          chips : "204 cr"
         }
       ];
     },
