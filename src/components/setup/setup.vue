@@ -62,10 +62,15 @@
         >
           <template v-slot:top>
            <v-toolbar color="blue" light>
-                <v-toolbar-title>My Team</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-text-field class="mt-0" left label="Search" prepend-inner-icon="search" solo-inverted
+                <v-layout>
+                  <v-flex xs4 sm4 md6 justify-start>
+                      <v-toolbar-title class="body-1 white--text">My Team</v-toolbar-title>
+                  </v-flex>
+                  <v-flex xs8 sm8 md6>
+                    <v-text-field class="mt-0" left label="Search" prepend-inner-icon="search" solo-inverted
                        v-model="search" clearable single-line hide-details></v-text-field>
+                  </v-flex>
+                </v-layout>
               </v-toolbar>
           </template>
           <!-- <template v-slot:item.month="{ item }">

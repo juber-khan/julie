@@ -43,12 +43,17 @@
       <v-layout>
         <v-flex sm12 md8 offset-md-2 justify-center class="my-2">
           <v-toolbar color="indigo lighten-1" light class="white--text">
-                <v-toolbar-title >My Team</v-toolbar-title>
-                <v-spacer></v-spacer>
-                 <v-text-field class="mt-8 white--text" left label="Search" prepend-inner-icon="search" solo-inverted
-                       v-model="search" clearable  @click:clear="clearSearch"></v-text-field>
+                <v-layout>
+                  <v-flex xs4 sm4 md6 justify-start>
+                      <v-toolbar-title class="body-1 white--text">My Team</v-toolbar-title>
+                  </v-flex>
+                  <v-flex xs8 sm8 md6>
+                    <v-text-field class="mt-0" left label="Search" prepend-inner-icon="search" solo-inverted
+                       v-model="search" clearable single-line hide-details></v-text-field>
+                  </v-flex>
+                </v-layout>
               </v-toolbar>
-          <v-list class="pa-" v-for="dist in filteredItems" :key="dist.id">
+          <v-list class="" v-for="dist in filteredItems" :key="dist.id">
             <v-card class="pa-5 my-3 good">
               <v-layout row>
                 <v-flex xs12 md2>
